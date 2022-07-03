@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница читателя</title>
+</head>
+<body>
+    <h2>Страница читателя <span th:text="' - id' + ${person.getId()}"></span></h2>
+    <hr/>
+    <h3>
+        <span th:text="${person.getFullName()}">text</span>,
+        <span th:text="${person.getYearOfBirth()}"></span>
+    </h3>
+    <hr/>
+</body>
+</html>
