@@ -5,6 +5,15 @@
     <title>People List</title>
 </head>
 <body>
-    Here will be people list.
+    <h1>Список читателей:</h1>
+    <hr/>
+    <div th:each="person: ${people}">
+        <a th:href="@{/people/{id}(id=${person.getId()})}">
+            <strong>(id<span th:text="${person.getId()}">i</span>)</strong>
+            <span th:text="${person.getFullName()}">fn</span>
+            (<span th:text="${person.getYearOfBirth()}"></span>)
+        </a>
+    </div>
+    <hr/>
 </body>
 </html>
