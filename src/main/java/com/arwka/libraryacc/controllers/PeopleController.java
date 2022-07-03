@@ -1,12 +1,14 @@
 package com.arwka.libraryacc.controllers;
 
 import com.arwka.libraryacc.dao.PersonDAO;
+import com.arwka.libraryacc.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -29,5 +31,22 @@ public class PeopleController {
     public String personPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.getPersonById(id));
         return "people/person-page";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDAO.getPersonById(id));
+        return "people/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updatePerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult,
+                               @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "people/edit";
+
+        personDAO.update(id, person);
+        return "redirect:/people";
     }
 }

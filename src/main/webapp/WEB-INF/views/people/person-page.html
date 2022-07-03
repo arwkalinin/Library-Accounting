@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница читателя</title>
+    <title>Reader page</title>
 </head>
 <body>
-    <h2>Страница читателя <span th:text="' - id' + ${person.getId()}"></span></h2>
+    <h2>Reader <span th:text="' - id' + ${person.getId()}"></span></h2>
     <hr/>
     <h3>
-        <span th:text="${person.getFullName()}">text</span>,
-        <span th:text="${person.getYearOfBirth()}"></span>
+        <span th:text="${person.getName()}">text</span>,
+        <span th:text="${person.getBirth()}"></span>
     </h3>
+    <hr/>
+    <form method="get" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+        <button type="submit">EDIT PERSON</button>
+    </form>
+    <hr/>
+    <form method="get" action="/page2">
+        <button type="submit">DELETE (to-do)</button>
+    </form>
     <hr/>
 </body>
 </html>

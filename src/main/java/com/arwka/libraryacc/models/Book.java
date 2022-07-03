@@ -12,15 +12,15 @@ public class Book {
     @NotEmpty(message = "Author should not be empty.")
     @Size(min = 1, max = 64, message = "Author should be between 1 and 64 characters.")
     private String author;
-    private int releaseYear;
-    private int takenById;
+    private int release;
+    private int taker;
 
     ///////////////////
     public Book() {}
-    public Book(String title, String author, int releaseYear) {
+    public Book(String title, String author, int release) {
         this.title = title;
         this.author = author;
-        this.releaseYear = releaseYear;
+        this.release = release;
     }
     //
     public int getId() {
@@ -47,17 +47,17 @@ public class Book {
         this.author = author;
     }
     //
-    public int getReleaseYear() {
-        return releaseYear;
+    public int getRelease() {
+        return release;
     }
     //
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setRelease(int release) {
+        this.release = release;
     }
     //
-    public int getTakenById() { return takenById; }
+    public int getTaker() { return taker; }
     //
-    public void setTakenById(int takenById) { this.takenById = takenById; }
+    public void setTaker(int taker) { this.taker = taker; }
     //
     @Override
     public String toString() {
@@ -65,7 +65,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", releaseYear=" + releaseYear +
+                ", release=" + release +
                 '}';
     }
 }

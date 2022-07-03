@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список читателей</title>
+    <title>Readers list</title>
 </head>
 <body>
-    <h1>Список читателей:</h1>
+    <h1>Readers List:</h1>
     <hr/>
     <div th:each="person: ${people}">
         <a th:href="@{/people/{id}(id=${person.getId()})}">
             <strong>(id<span th:text="${person.getId()}">i</span>)</strong>
-            <span th:text="${person.getFullName()}">fn</span>
-            (<span th:text="${person.getYearOfBirth()}"></span>)
+            <span th:text="${person.getName()}">fn</span>
+            (<span th:text="${person.getBirth()}"></span>)
         </a>
     </div>
     <hr/>

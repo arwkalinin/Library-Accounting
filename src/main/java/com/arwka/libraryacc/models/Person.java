@@ -10,16 +10,16 @@ public class Person {
     private int id;
     @NotEmpty(message = "Full name should not be empty.")
     @Size(min = 5, max = 64, message = "Full name should be between 5 and 64 characters.")
-    private String fullName;
+    private String name;
     @Min(value = 1900, message = "Year of birth should be greater than 1900.")
     @Max(value = 2022, message = "Year of birth should be less than 2023.")
-    private int yearOfBirth;
+    private int birth;
 
     ///////////////////
     public Person() {}
     public Person(String fullName, int yearOfBirth) {
-        this.fullName = fullName;
-        this.yearOfBirth = yearOfBirth;
+        this.name = fullName;
+        this.birth = yearOfBirth;
     }
     //
     public int getId() {
@@ -30,27 +30,27 @@ public class Person {
         this.id = id;
     }
     //
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
     //
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
     //
-    public int getYearOfBirth() {
-        return yearOfBirth;
+    public int getBirth() {
+        return birth;
     }
     //
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setBirth(int birth) {
+        this.birth = birth;
     }
     //
     @Override
     public String toString() {
         return "Person{" +
-                "fullName='" + fullName + '\'' +
-                ", yearOfBirth=" + yearOfBirth +
+                "name='" + name + '\'' +
+                ", birth=" + birth +
                 '}';
     }
 }
