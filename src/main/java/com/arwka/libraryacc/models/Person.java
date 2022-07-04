@@ -15,37 +15,31 @@ public class Person {
     @Max(value = 2022, message = "Year of birth should be less than 2023.")
     private int birth;
 
-    ///////////////////
     public Person() {}
     public Person(String fullName, int yearOfBirth) {
         this.name = fullName;
         this.birth = yearOfBirth;
     }
-    //
+
     public int getId() {
         return id;
     }
-    //
     public void setId(int id) {
         this.id = id;
     }
-    //
     public String getName() {
         return name;
     }
-    //
     public void setName(String name) {
         this.name = name;
     }
-    //
     public int getBirth() {
         return birth;
     }
-    //
     public void setBirth(int birth) {
         this.birth = birth;
     }
-    //
+
     @Override
     public String toString() {
         return "Person{" +

@@ -45,12 +45,14 @@ public class PeopleController {
     public String newPerson(@ModelAttribute("person") Person person) { return "people/new"; }
 
     @PostMapping
-    public String createNewPerson(@ModelAttribute("person") @Valid Person person,
-                                  BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String saveNewPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "people/new";
-        personDAO.saveNewPerson(person);
-        return "redirect:/people";
+        } else {
+            personDAO.saveNewPerson(person);
+            return "redirect:/people";
+        }
+
     }
 
     @PatchMapping("/{id}")

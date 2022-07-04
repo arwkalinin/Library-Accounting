@@ -40,21 +40,23 @@ public class BooksController {
         return "books/book-page";
     }
 
-    @GetMapping("/new")
-    public String newBook(@ModelAttribute("book") Book book) { return "books/new"; }
-
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("book", bookDAO.getBookById(id));
         return "books/edit";
     }
 
+    @GetMapping("/new")
+    public String newBook(@ModelAttribute("book") Book book) { return "books/new"; }
+
     @PostMapping
     public String saveNewBook(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return "books/new";
-        bookDAO.saveNewBook(book);
-        return "redirect:/books";
+        } else {
+            bookDAO.saveNewBook(book);
+            return "redirect:/books";
+        }
     }
 
     @PatchMapping("/{id}/return-book")

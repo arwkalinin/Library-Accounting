@@ -1,5 +1,6 @@
 package com.arwka.libraryacc.util;
 
+import com.arwka.libraryacc.controllers.BooksController;
 import com.arwka.libraryacc.dao.BookDAO;
 import com.arwka.libraryacc.dao.PersonDAO;
 import com.arwka.libraryacc.models.Book;
@@ -31,7 +32,7 @@ public class BookValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Book book = (Book) o;
-        if (!isTakerPresent(book.getTaker()))
+        if (!isTakerPresent(book.getTaker()) && book.getTaker() != 0)
             errors.rejectValue("taker", "", "This taker doesnt exist.");
 //        if (!isTitleUnique(book.getTitle()))
 //            errors.rejectValue("title", "", "This title is occupied.");
