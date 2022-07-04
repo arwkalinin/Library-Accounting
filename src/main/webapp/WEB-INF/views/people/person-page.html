@@ -11,7 +11,19 @@
         <span th:text="${person.getName()}">text</span>,
         <span th:text="${person.getBirth()}"></span>
     </h3>
+
     <hr/>
+    <h2>Books on balance:</h2>
+    <div th:each="book: ${booksOnBalance}">
+        <a th:href="@{/books/{id}(id=${book.getId()})}">
+        <span th:text="${book.getTitle()}">title</span> (
+        <span th:text="${book.getAuthor()}">author</span>) -
+        <span th:text="${book.getRelease()}">release</span>.
+        </a>
+    </div>
+    <br/>
+    <hr/>
+
     <form method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
         <button type="submit">EDIT PERSON</button>
     </form>

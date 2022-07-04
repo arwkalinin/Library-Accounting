@@ -1,6 +1,8 @@
 package com.arwka.libraryacc.dao;
 
+import com.arwka.libraryacc.models.Book;
 import com.arwka.libraryacc.models.Person;
+import com.arwka.libraryacc.rowmappers.BookRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +25,10 @@ public class PersonDAO {
     public Person getPersonById(int id) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
+    }
+    //
+    public List<Book> booksOnBalance(Person person) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE taker=?", new Object[]{person.getId()}, new BookRowMapper());
     }
     //
     public void saveNewPerson(Person person) {

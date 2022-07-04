@@ -29,7 +29,9 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String personPage(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.getPersonById(id));
+        Person personToDisplay = personDAO.getPersonById(id);
+        model.addAttribute("person", personToDisplay);
+        model.addAttribute("booksOnBalance", personDAO.booksOnBalance(personToDisplay));
         return "people/person-page";
     }
 
