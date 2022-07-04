@@ -15,12 +15,18 @@
 
     <hr/>
     <h2>Books on balance:</h2>
+    <p th:if="${booksOnBalance.isEmpty()}">There is no books</p>
     <div th:each="book: ${booksOnBalance}">
         <a th:href="@{/books/{id}(id=${book.getId()})}">
         <span th:text="${book.getTitle()}">title</span> (
         <span th:text="${book.getAuthor()}">author</span>) -
-        <span th:text="${book.getRelease()}">release</span>.
+        <span th:text="${book.getRelease()}">release</span>
         </a>
+        .........
+        <form th:method="PATCH" th:action="@{/books/{id}/return-book(id=${book.getId()})}">
+            <button type="submit">RETURN THIS BOOK</button>
+        </form>
+        <hr/>
     </div>
     <br/>
     <hr/>

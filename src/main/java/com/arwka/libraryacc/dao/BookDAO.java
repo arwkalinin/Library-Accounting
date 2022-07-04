@@ -33,9 +33,15 @@ public class BookDAO {
     }
     //
     public void update(int id, Book updatedBook) {
-        jdbcTemplate.update(
-                "UPDATE Book SET title=?, author=?, release=?, taker=? WHERE id=?",
-                updatedBook.getTitle(), updatedBook.getAuthor(), updatedBook.getRelease(), updatedBook.getTaker(), id);
+        if (updatedBook.getTaker() == 0) {
+            jdbcTemplate.update(
+                    "UPDATE Book SET title=?, author=?, release=?, taker=NULL WHERE id=?",
+                    updatedBook.getTitle(), updatedBook.getAuthor(), updatedBook.getRelease(), id);
+        } else {
+            jdbcTemplate.update(
+                    "UPDATE Book SET title=?, author=?, release=?, taker=? WHERE id=?",
+                    updatedBook.getTitle(), updatedBook.getAuthor(), updatedBook.getRelease(), updatedBook.getTaker(), id);
+        }
     }
 
     public void delete(int id) {

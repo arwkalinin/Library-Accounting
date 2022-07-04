@@ -57,6 +57,15 @@ public class BooksController {
         return "redirect:/books";
     }
 
+    @PatchMapping("/{id}/return-book")
+    public String returnBook(@PathVariable("id") int id) {
+        Book book = bookDAO.getBookById(id);
+        int recentTakerId = book.getTaker();
+        book.setTaker(0);
+        bookDAO.update(id, book);
+        return "redirect:/people/" + recentTakerId;
+    }
+
     @PatchMapping("/{id}")
     public String updateBook(@ModelAttribute("book") @Valid Book book,
                                BindingResult bindingResult,
