@@ -12,12 +12,12 @@
         <span th:text="${person.getBirth()}"></span>
     </h3>
     <hr/>
-    <form method="get" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+    <form method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
         <button type="submit">EDIT PERSON</button>
     </form>
     <hr/>
-    <form method="get" action="/page2">
-        <button type="submit">DELETE (to-do)</button>
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+        <button type="submit">DELETE</button>
     </form>
     <hr/>
 </body>
