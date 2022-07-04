@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<h1>Books List</h1>
+<strong><a href="/books/new">Create new book</a> | <a href="/">Back to main page</a></strong>
+<hr/>
+<div th:each="book: ${books}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}">
+        <strong><span th:text="${book.getId()}">i</span>. </strong>
+        <span th:text="${book.getTitle()}">fn</span>
+        - <span th:text="${book.getAuthor()}">a</span>
+        (<span th:text="${book.getRelease()}">r</span>)
+    </a>
+    <span th:if= "${book.getTaker() > 0}">.
+        IS TAKEN BY
+        <a th:href="@{/people/{id}(id=${book.getTaker()})}" th:text="${book.getTaker()}"></a>
+    </span>
+
+</div>
+<hr/>
+</body>
+</html>

@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Readers List:</h1>
-    <p><a href="/people/new">Create new person</a></p>
+    <strong><a href="/people/new">Create new person</a> | <a href="/">Back to main page</a></strong>
     <hr/>
     <div th:each="person: ${people}">
         <a th:href="@{/people/{id}(id=${person.getId()})}">

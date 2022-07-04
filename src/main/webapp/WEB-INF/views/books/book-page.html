@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book page</title>
+</head>
+<body>
+<h2>Book <span th:text="' - id' + ${book.getId()}"></span></h2>
+<hr/>
+    <span th:text="${book.getTitle()}">title</span> (
+    <span th:text="${book.getAuthor()}">author</span>) -
+    <span th:text="${book.getRelease()}">release</span>.
+    <span th:if= "${book.getTaker() > 0}">
+        IS TAKEN BY
+        <a th:href="@{/people/{id}(id=${book.getTaker()})}" th:text="${book.getTaker()}"></a>
+    </span>
+
+<hr/>
+<form method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+    <button type="submit">EDIT BOOK</button>
+</form>
+<hr/>
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+    <button type="submit">DELETE</button>
+</form>
+<hr/>
+
+</body>
+</html>
