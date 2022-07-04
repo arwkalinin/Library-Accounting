@@ -39,6 +39,18 @@ public class PeopleController {
         return "people/edit";
     }
 
+    @GetMapping("/new")
+    public String newPerson(@ModelAttribute("person") Person person) { return "people/new"; }
+
+    @PostMapping
+    public String createNewPerson(@ModelAttribute("person") @Valid Person person,
+                                  BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "people/new";
+        personDAO.saveNewPerson(person);
+        return "redirect:/people";
+    }
+
     @PatchMapping("/{id}")
     public String updatePerson(@ModelAttribute("person") @Valid Person person,
                                BindingResult bindingResult,
