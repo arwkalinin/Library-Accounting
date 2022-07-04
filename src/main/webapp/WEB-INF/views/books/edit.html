@@ -5,7 +5,8 @@
     <title>Book edit</title>
 </head>
 <body>
-<h2></h2>
+<h2>Edit book</h2>
+<a href="/">Back to main page</a>
 <hr/>
 <form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
   <label for="title">Enter title: </label>
@@ -19,6 +20,10 @@
   <label for="release">Enter release year: </label>
   <input type="text" th:field="*{release}" id="release">
   <div style="color:lightcoral" th:if="${#fields.hasErrors('release')}" th:errors="*{release}">Release error</div>
+  <hr/>
+  <label for="taker">Enter owner's ID: </label>
+  <input type="text" th:field="*{taker}" id="taker">
+  <div style="color:lightcoral" th:if="${#fields.hasErrors('taker')}" th:errors="*{taker}">Owner error</div>
   <hr/>
   <input type="submit" value="Update"/>
 </form>

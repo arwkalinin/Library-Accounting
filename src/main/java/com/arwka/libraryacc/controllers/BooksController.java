@@ -1,8 +1,9 @@
 package com.arwka.libraryacc.controllers;
 
 import com.arwka.libraryacc.dao.BookDAO;
+import com.arwka.libraryacc.dao.PersonDAO;
 import com.arwka.libraryacc.models.Book;
-import com.arwka.libraryacc.models.Person;
+import com.arwka.libraryacc.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,14 @@ import javax.validation.Valid;
 public class BooksController {
 
     private final BookDAO bookDAO;
+    private final PersonDAO personDAO;
+    private final BookValidator bookValidator;
 
     @Autowired
-    public BooksController(BookDAO bookDAO) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO, BookValidator bookValidator) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
+        this.bookValidator = bookValidator;
     }
 
     @GetMapping()
@@ -31,6 +36,7 @@ public class BooksController {
     @GetMapping("/{id}")
     public String bookPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("book", bookDAO.getBookById(id));
+        model.addAttribute("people", personDAO.index());
         return "books/book-page";
     }
 
@@ -52,9 +58,10 @@ public class BooksController {
     }
 
     @PatchMapping("/{id}")
-    public String updatePerson(@ModelAttribute("book") @Valid Book book,
+    public String updateBook(@ModelAttribute("book") @Valid Book book,
                                BindingResult bindingResult,
                                @PathVariable("id") int id) {
+        bookValidator.validate(book, bindingResult);
         if (bindingResult.hasErrors())
             return "books/edit";
 

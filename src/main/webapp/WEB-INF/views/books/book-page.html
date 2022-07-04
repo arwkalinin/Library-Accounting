@@ -6,6 +6,7 @@
 </head>
 <body>
 <h2>Book <span th:text="' - id' + ${book.getId()}"></span></h2>
+<a href="/">Back to main page</a>
 <hr/>
     <span th:text="${book.getTitle()}">title</span> (
     <span th:text="${book.getAuthor()}">author</span>) -
@@ -14,7 +15,6 @@
         IS TAKEN BY
         <a th:href="@{/people/{id}(id=${book.getTaker()})}" th:text="${book.getTaker()}"></a>
     </span>
-
 <hr/>
 <form method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
     <button type="submit">EDIT BOOK</button>

@@ -5,7 +5,8 @@
     <title>Reader edit</title>
 </head>
 <body>
-    <h2></h2>
+    <h2>Edit reader</h2>
+    <a href="/">Back to main page</a>
     <hr/>
     <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
         <label for="name">Введите ФИО: </label>
